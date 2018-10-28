@@ -46,8 +46,15 @@ namespace hTunes
         }
         private void newPlaylist_Click(object sender, RoutedEventArgs e)
         {
-            NewPlaylist newPlaylist = new NewPlaylist();
+            var newPlaylist = new NewPlaylist();
             newPlaylist.ShowDialog();
+            bool addPlaylist = newPlaylist.WasOKClicked;
+            if (addPlaylist == true)
+            {
+                string newPlaylistName = newPlaylist.getPlaylistName;
+                musicLib.AddPlaylist(newPlaylistName);
+                playlistBox.Items.Add(newPlaylistName);
+            }
         }
 
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
