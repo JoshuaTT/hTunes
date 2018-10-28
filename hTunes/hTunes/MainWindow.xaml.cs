@@ -40,16 +40,14 @@ namespace hTunes
             AboutWindow aboutWindow = new AboutWindow();
             aboutWindow.ShowDialog();
         }
-
-        private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void openButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void newPlaylist_Click(object sender, RoutedEventArgs e)
         {
-            NewPlaylist newPlalist = new NewPlaylist();
-            newPlalist.ShowDialog();
+            NewPlaylist newPlaylist = new NewPlaylist();
+            newPlaylist.ShowDialog();
         }
 
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,5 +83,6 @@ namespace hTunes
             playlistSongs.ItemsSource = sourceTableFull.DefaultView;
 
         }
+
     }
 }

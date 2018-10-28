@@ -29,6 +29,7 @@ namespace hTunes
         {
             string newPlaylist = newPlaylistTextBox.Text;
             musicLib.AddPlaylist(newPlaylist);
+            
             Close();
         }
 

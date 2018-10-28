@@ -141,12 +141,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="tempPic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="music.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Info.jpg" />
+    <Resource Include="New Playlist.jpg" />
+    <Resource Include="Open Folder.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
