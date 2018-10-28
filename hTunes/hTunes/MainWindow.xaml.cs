@@ -21,7 +21,7 @@ namespace hTunes
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static RoutedCommand LaunchAboutPage = new RoutedCommand();
+        
         private MusicLib musicLib = new MusicLib();
 
         public MainWindow()
