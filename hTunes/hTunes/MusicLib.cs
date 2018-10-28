@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 ﻿// MusicLib by Frank McCown
 
 using System;
+=======
+﻿using System;
+>>>>>>> 09cb3f4609c9bd3426cf71f28d4af5908513edb7
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -88,6 +92,7 @@ namespace hTunes
         /// </summary>
         /// <param name="filename">MP3 filename</param>
         /// <returns>Song created from the MP3</returns>
+<<<<<<< HEAD
         //public Song AddSong(string filename)
 
         //{
@@ -116,6 +121,34 @@ namespace hTunes
         //    return s;
 
         //}
+=======
+        public Song AddSong(string filename)
+        {
+            // PM> Install-Package taglib
+            // http://stackoverflow.com/questions/1750464/how-to-read-and-write-id3-tags-to-an-mp3-in-c
+            TagLib.File file = TagLib.File.Create(filename);
+
+            Song s = new Song
+            {
+                Title = file.Tag.Title,
+                Artist = file.Tag.AlbumArtists.Length > 0 ? file.Tag.AlbumArtists[0] : "",
+                Album = file.Tag.Album,
+                Genre = file.Tag.Genres.Length > 0 ? file.Tag.Genres[0] : "",
+                Length = file.Properties.Duration.Minutes + ":" + file.Properties.Duration.Seconds,
+                Filename = filename
+            };
+
+            GetSongData(s);
+
+            AddSong(s);
+            return s;
+        }
+
+        private void GetSongData(Song s)
+        {
+            throw new NotImplementedException();
+        }
+>>>>>>> 09cb3f4609c9bd3426cf71f28d4af5908513edb7
 
 
         /// <summary>
