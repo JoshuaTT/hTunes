@@ -92,7 +92,15 @@ namespace hTunes
 
         private void RemoveSong_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
+            try
+            {
+                DataRowView selectedRowWrapper = playlistSongs.SelectedItem as DataRowView;
+                DataRow selectedRow = selectedRowWrapper.Row;
+                int toRemoveId = (int)selectedRow.ItemArray[0];
+                musicLib.DeleteSong(toRemoveId);
+            }
+            catch(Exception)
+            { }
         }
 
         private void RemoveFromPlaylist_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -108,7 +116,18 @@ namespace hTunes
 
         private void RemoveFromPlaylist_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            int toRemoveIndex = playlistSongs.SelectedIndex;
 
+            try
+            {
+                DataRowView selectedRowWrapper = playlistSongs.SelectedItem as DataRowView;
+                DataRow selectedRow = selectedRowWrapper.Row;
+                int toRemoveId = (int)selectedRow.ItemArray[0];
+
+                musicLib.RemoveSongFromPlaylist(toRemoveIndex, toRemoveId, currentPlaylist);
+            }
+            catch(Exception)
+            { }
         }
 
     }
