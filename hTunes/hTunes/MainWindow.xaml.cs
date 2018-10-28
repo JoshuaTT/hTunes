@@ -155,10 +155,13 @@ namespace hTunes
         {
             try
             {
-                DataRowView selectedRowWrapper = playlistSongs.SelectedItem as DataRowView;
-                DataRow selectedRow = selectedRowWrapper.Row;
-                int toRemoveId = (int)selectedRow.ItemArray[0];
-                musicLib.DeleteSong(toRemoveId);
+                if (MessageBox.Show("Are you sure you want to remove this song?", "Delete Song", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    DataRowView selectedRowWrapper = playlistSongs.SelectedItem as DataRowView;
+                    DataRow selectedRow = selectedRowWrapper.Row;
+                    int toRemoveId = (int)selectedRow.ItemArray[0];
+                    musicLib.DeleteSong(toRemoveId);
+                }
             }
             catch(Exception)
             { }
