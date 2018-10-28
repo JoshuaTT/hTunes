@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ﻿// MusicLib by Frank McCown
 
 using System;
-=======
-﻿using System;
->>>>>>> 09cb3f4609c9bd3426cf71f28d4af5908513edb7
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -92,7 +88,6 @@ namespace hTunes
         /// </summary>
         /// <param name="filename">MP3 filename</param>
         /// <returns>Song created from the MP3</returns>
-<<<<<<< HEAD
         //public Song AddSong(string filename)
 
         //{
@@ -121,7 +116,6 @@ namespace hTunes
         //    return s;
 
         //}
-=======
         public Song AddSong(string filename)
         {
             // PM> Install-Package taglib
@@ -148,7 +142,6 @@ namespace hTunes
         {
             throw new NotImplementedException();
         }
->>>>>>> 09cb3f4609c9bd3426cf71f28d4af5908513edb7
 
 
         /// <summary>
