@@ -22,7 +22,7 @@ namespace hTunes
     public partial class MainWindow : Window
     {
         public static RoutedCommand LaunchAboutPage = new RoutedCommand();
-        private static MusicLib musicLib = new MusicLib();
+        private MusicLib musicLib = new MusicLib();
 
         public MainWindow()
         {
@@ -52,10 +52,8 @@ namespace hTunes
 
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //var a = playlistBox;
-            //bool stop = true;
-            //stop = false;
-           // playlistSongs = musicLib.SongsForPlaylist(playlistBox.SelectedValue);
+            string playlistName = playlistBox.SelectedValue.ToString();
+            playlistSongs.ItemsSource = musicLib.SongsForPlaylist(playlistName).DefaultView;
         }
     }
 }
