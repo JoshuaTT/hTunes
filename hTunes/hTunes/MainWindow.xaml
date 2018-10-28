@@ -21,11 +21,11 @@
         <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="110,293,0,0" VerticalAlignment="Top" Width="64" Height="20"/>
         <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="179,293,0,0" VerticalAlignment="Top" Width="64" Height="20"/>
         <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Height="36">
-            <Button Command="Open" Height="26" Margin="0,0,0,5" Width="24">
+            <Button Command="Open" Height="26" Margin="0,0,0,5" Width="24" Click="openButton_Click">
                 <Button.Template>
                     <ControlTemplate>
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Source="tempPic.jpg"  Width="16" Height="16"/>
+                            <Image Source="Open folder.jpg"  Width="16" Height="16"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
@@ -34,7 +34,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Source="tempPic.jpg"  Width="16" Height="16"/>
+                            <Image Source="New Playlist.jpg"  Width="16" Height="16"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
@@ -43,7 +43,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Source="tempPic.jpg"  Width="16" Height="16"/>
+                            <Image Source="Info.jpg"  Width="16" Height="16"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
