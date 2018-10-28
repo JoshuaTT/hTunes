@@ -35,8 +35,8 @@ namespace hTunes
         }
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             addPlaylist = true;
+            Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

@@ -21,7 +21,7 @@ namespace hTunes
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         private MusicLib musicLib = new MusicLib();
         private const string defaultPlaylist = "All Music";
         private string currentPlaylist = "All Music";
@@ -30,10 +30,10 @@ namespace hTunes
         {
             InitializeComponent();
 
-            playlistBox.Items.Add("All Music");
+            addPlaylists();
             changePlaylistSource(musicLib.SongsForPlaylist(defaultPlaylist));
         }
-        
+
 
         private void aboutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +42,7 @@ namespace hTunes
         }
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-           // Configure open file dialog box
+            // Configure open file dialog box
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.FileName = "";
             openFileDialog.DefaultExt = "*.wma;*.wav;*mp3";
@@ -107,7 +107,17 @@ namespace hTunes
             return song;
         }
 
-
+        // Ask Josh
+        private void addPlaylists()
+        {
+            playlistBox.Items.Add("All Music");
+            var playlists = musicLib.Playlists;
+            foreach (var name in playlists)
+            {
+                musicLib.AddPlaylist(name);
+                playlistBox.Items.Add(name);
+            }
+        }
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currentPlaylist = playlistBox.SelectedValue.ToString();
