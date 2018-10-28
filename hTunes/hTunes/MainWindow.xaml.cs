@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +31,23 @@ namespace hTunes
             playlistBox.Items.Add("All Music");
         }
 
+
+
         private void aboutButton_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
-            aboutWindow.Show();
+            aboutWindow.ShowDialog();
+        }
+
+        private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void newPlaylist_Click(object sender, RoutedEventArgs e)
+        {
+            NewPlaylist newPlalist = new NewPlaylist();
+            newPlalist.ShowDialog();
         }
 
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
