@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
-        Title="hTunes by Joshua and Tristan" Height="352.656" Width="525">
+        Title="hTunes by Joshua and Tristan" Height="352.656" Width="562.545">
 
     <Grid>
-        <DataGrid SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Left" Margin="146,80,0,35" Width="361">
+        <DataGrid SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Left" Margin="110,80,0,35.2" Width="397">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding title}" Header="Title"/>
@@ -20,9 +20,6 @@
 
         <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="146,292,0,0" VerticalAlignment="Top" Width="64" Height="20"/>
         <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="215,292,0,0" VerticalAlignment="Top" Width="64" Height="20"/>
-        <Border BorderThickness="1" BorderBrush="Black" Margin="10,80,384,22">
-            <TextBlock x:Name="playlistTextBlock"  HorizontalAlignment="Left" Margin="9,9,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="200" Width="103"/>
-        </Border>
         <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Width="497" Height="36">
             <Button Command="Open" Height="26" Margin="0,0,0,5" Width="24">
                 <Button.Template>
@@ -52,5 +49,6 @@
                 </Button.Template>
             </Button>
         </ToolBar>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="208" Margin="10,80,0,0" VerticalAlignment="Top" Width="95"/>
     </Grid>
 </Window>
