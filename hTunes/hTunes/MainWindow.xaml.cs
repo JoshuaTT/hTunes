@@ -23,7 +23,8 @@ namespace hTunes
     {
         
         private MusicLib musicLib = new MusicLib();
-        private string defaultPlaylist = "All Music";
+        private const string defaultPlaylist = "All Music";
+        private string currentPlaylist = "All Music";
 
         public MainWindow()
         {
@@ -32,8 +33,7 @@ namespace hTunes
             playlistBox.Items.Add("All Music");
             changePlaylistSource(musicLib.SongsForPlaylist(defaultPlaylist));
         }
-
-
+        
 
         private void aboutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -110,37 +110,65 @@ namespace hTunes
 
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string playlistName = playlistBox.SelectedValue.ToString();
-            changePlaylistSource(musicLib.SongsForPlaylist(playlistName));
+            currentPlaylist = playlistBox.SelectedValue.ToString();
+
+            if (currentPlaylist != defaultPlaylist)
+                playlistSongs.IsReadOnly = true;
+            else
+                playlistSongs.IsReadOnly = false;
+
+            changePlaylistSource(musicLib.SongsForPlaylist(currentPlaylist));
         }
 
 
         private void changePlaylistSource(DataTable sourceTableFull)
         {
-            //DataTable viewableSource = new DataTable();
-            //viewableSource.Columns.Add(new DataColumn("id", typeof(int)));
-            //viewableSource.Columns.Add(new DataColumn("title", typeof(string)));
-            //viewableSource.Columns.Add(new DataColumn("artist", typeof(string)));
-            //viewableSource.Columns.Add(new DataColumn("album", typeof(string)));
-            //viewableSource.Columns.Add(new DataColumn("genre", typeof(string)));
-
-
-            //foreach (DataRow row in sourceTableFull.Rows)
-            //{
-            //    DataRow newRow = viewableSource.NewRow();
-
-            //    newRow["id"] = row.ItemArray[0];
-            //    newRow["title"] = row.ItemArray[1];
-            //    newRow["artist"] = row.ItemArray[2];
-            //    newRow["album"] = row.ItemArray[3];
-            //    newRow["genre"] = row.ItemArray[6];
-
-            //    viewableSource.Rows.Add(newRow);
-            //}
-
             playlistSongs.ItemsSource = sourceTableFull.DefaultView;
+        }
+
+        private void PlayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
 
         }
+
+        private void RemoveSong_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            bool canRemove = false;
+
+            if (defaultPlaylist == currentPlaylist)
+                canRemove = true;
+
+            e.CanExecute = canRemove;
+        }
+
+        private void RemoveSong_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveFromPlaylist_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            bool canRemove = false;
+
+            if (defaultPlaylist != currentPlaylist)
+                canRemove = true;
+
+            e.CanExecute = canRemove;
+
+        }
+
+        private void RemoveFromPlaylist_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+    }
+
+    public static class CustomCommands
+    {
+        public static readonly RoutedUICommand Play = new RoutedUICommand("Play", "Play", typeof(MainWindow));
+        public static readonly RoutedUICommand RemoveSong = new RoutedUICommand("RemoveSong", "RemoveSong", typeof(MainWindow));
+        public static readonly RoutedUICommand RemoveFromPlaylist = new RoutedUICommand("RemoveFromPlaylist", "RemoveFromPlaylist", typeof(MainWindow));
 
     }
 }
