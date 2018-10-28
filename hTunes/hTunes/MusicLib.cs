@@ -88,7 +88,6 @@ namespace hTunes
         /// </summary>
         /// <param name="filename">MP3 filename</param>
         /// <returns>Song created from the MP3</returns>
-<<<<<<< HEAD
         //public Song AddSong(string filename)
 
         //{
@@ -117,9 +116,7 @@ namespace hTunes
         //    return s;
 
         //}
-=======
 
->>>>>>> f585df8ee6b7a69ec91d0999de1eb6874f279027
         public Song AddSong(string filename)
         {
             // PM> Install-Package taglib
@@ -146,10 +143,6 @@ namespace hTunes
         {
             throw new NotImplementedException();
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> f585df8ee6b7a69ec91d0999de1eb6874f279027
 
 
         /// <summary>

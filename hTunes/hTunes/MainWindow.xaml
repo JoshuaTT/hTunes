@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
         Title="hTunes by Joshua and Tristan" Height="352.656" Width="520.545">
 
@@ -14,8 +13,8 @@
                 <DataGridTextColumn Binding="{Binding id}" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding title}" Header="Title"/>
                 <DataGridTextColumn Binding="{Binding artist}" Header="Artist"/>
-                <DataGridTextColumn Binding="{Binding albun}" Header="Album"/>
-                <DataGridTextColumn Binding="{Binding Genre}" Header="Genre"/>
+                <DataGridTextColumn Binding="{Binding album}" Header="Album"/>
+                <DataGridTextColumn Binding="{Binding genre}" Header="Genre"/>
             </DataGrid.Columns>
         </DataGrid>
 
