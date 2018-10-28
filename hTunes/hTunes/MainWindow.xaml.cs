@@ -22,10 +22,13 @@ namespace hTunes
     public partial class MainWindow : Window
     {
         public static RoutedCommand LaunchAboutPage = new RoutedCommand();
+        private static MusicLib musicLib = new MusicLib();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            playlistBox.Items.Add("All Music");
         }
 
 
@@ -45,6 +48,14 @@ namespace hTunes
         {
             NewPlaylist newPlalist = new NewPlaylist();
             newPlalist.ShowDialog();
+        }
+
+        private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //var a = playlistBox;
+            //bool stop = true;
+            //stop = false;
+           // playlistSongs = musicLib.SongsForPlaylist(playlistBox.SelectedValue);
         }
     }
 }

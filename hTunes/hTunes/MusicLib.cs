@@ -88,6 +88,7 @@ namespace hTunes
         /// </summary>
         /// <param name="filename">MP3 filename</param>
         /// <returns>Song created from the MP3</returns>
+<<<<<<< HEAD
         //public Song AddSong(string filename)
 
         //{
@@ -116,6 +117,9 @@ namespace hTunes
         //    return s;
 
         //}
+=======
+
+>>>>>>> f585df8ee6b7a69ec91d0999de1eb6874f279027
         public Song AddSong(string filename)
         {
             // PM> Install-Package taglib
@@ -142,6 +146,10 @@ namespace hTunes
         {
             throw new NotImplementedException();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f585df8ee6b7a69ec91d0999de1eb6874f279027
 
 
         /// <summary>
@@ -446,6 +454,10 @@ namespace hTunes
         /// <returns></returns>
         public DataTable SongsForPlaylist(string playlist)
         {
+
+            if (playlist == "All Music")
+                return Songs;
+
             // Create a table with song attributes and position
             DataTable table = new DataTable();
             table.Columns.Add("id");
