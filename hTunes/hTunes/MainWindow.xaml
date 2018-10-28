@@ -8,8 +8,8 @@
         Title="hTunes by Joshua and Tristan" Height="352.656" Width="520.545">
 
     <Grid Margin="0,0,3,0.2">
-        <ListBox x:Name="listBox" Height="237" MaxWidth="95.2" Margin="10,51,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="95.2"/>
-        <DataGrid SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Left" Margin="110,51,0,35" MinWidth="397" >
+        <ListBox x:Name="playlistBox" Height="237" MaxWidth="95.2" Margin="10,51,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="95.2" SelectionChanged="playlistBox_SelectionChanged"/>
+        <DataGrid x:Name="playlistSongs" SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Left" Margin="110,51,0,35" MinWidth="397" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding title}" Header="Title"/>

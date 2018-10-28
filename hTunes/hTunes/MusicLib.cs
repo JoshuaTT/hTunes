@@ -416,6 +416,10 @@ namespace hTunes
         /// <returns></returns>
         public DataTable SongsForPlaylist(string playlist)
         {
+
+            if (playlist == "All Music")
+                return Songs;
+
             // Create a table with song attributes and position
             DataTable table = new DataTable();
             table.Columns.Add("id");
