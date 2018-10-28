@@ -19,18 +19,24 @@ namespace hTunes
     /// </summary>
     public partial class NewPlaylist : Window
     {
-        MusicLib musicLib = new MusicLib();
+        bool addPlaylist = false;
         public NewPlaylist()
         {
             InitializeComponent();
         }
 
+        public bool WasOKClicked
+        {
+            get { return addPlaylist; }
+        }
+        public string getPlaylistName
+        {
+            get { return newPlaylistTextBox.Text; }
+        }
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-            string newPlaylist = newPlaylistTextBox.Text;
-            musicLib.AddPlaylist(newPlaylist);
-            
             Close();
+            addPlaylist = true;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
