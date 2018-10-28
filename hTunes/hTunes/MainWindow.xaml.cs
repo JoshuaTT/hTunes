@@ -61,28 +61,28 @@ namespace hTunes
 
         private void changePlaylistSource(DataTable sourceTableFull)
         {
-            DataTable viewableSource = new DataTable();
-            viewableSource.Columns.Add(new DataColumn("id", typeof(int)));
-            viewableSource.Columns.Add(new DataColumn("title", typeof(string)));
-            viewableSource.Columns.Add(new DataColumn("artist", typeof(string)));
-            viewableSource.Columns.Add(new DataColumn("album", typeof(string)));
-            viewableSource.Columns.Add(new DataColumn("genre", typeof(string)));
+            //DataTable viewableSource = new DataTable();
+            //viewableSource.Columns.Add(new DataColumn("id", typeof(int)));
+            //viewableSource.Columns.Add(new DataColumn("title", typeof(string)));
+            //viewableSource.Columns.Add(new DataColumn("artist", typeof(string)));
+            //viewableSource.Columns.Add(new DataColumn("album", typeof(string)));
+            //viewableSource.Columns.Add(new DataColumn("genre", typeof(string)));
 
 
-            foreach (DataRow row in sourceTableFull.Rows)
-            {
-                DataRow newRow = viewableSource.NewRow();
+            //foreach (DataRow row in sourceTableFull.Rows)
+            //{
+            //    DataRow newRow = viewableSource.NewRow();
 
-                newRow["id"] = row.ItemArray[0];
-                newRow["title"] = row.ItemArray[1];
-                newRow["artist"] = row.ItemArray[2];
-                newRow["album"] = row.ItemArray[3];
-                newRow["genre"] = row.ItemArray[6];
+            //    newRow["id"] = row.ItemArray[0];
+            //    newRow["title"] = row.ItemArray[1];
+            //    newRow["artist"] = row.ItemArray[2];
+            //    newRow["album"] = row.ItemArray[3];
+            //    newRow["genre"] = row.ItemArray[6];
 
-                viewableSource.Rows.Add(newRow);
-            }
+            //    viewableSource.Rows.Add(newRow);
+            //}
 
-            playlistSongs.ItemsSource = viewableSource.DefaultView;
+            playlistSongs.ItemsSource = sourceTableFull.DefaultView;
 
         }
     }
