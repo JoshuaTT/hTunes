@@ -23,12 +23,14 @@ namespace hTunes
     {
         
         private MusicLib musicLib = new MusicLib();
+        private string defaultPlaylist = "All Music";
 
         public MainWindow()
         {
             InitializeComponent();
 
             playlistBox.Items.Add("All Music");
+            changePlaylistSource(musicLib.SongsForPlaylist(defaultPlaylist));
         }
 
 
@@ -51,7 +53,35 @@ namespace hTunes
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string playlistName = playlistBox.SelectedValue.ToString();
-            playlistSongs.ItemsSource = musicLib.SongsForPlaylist(playlistName).DefaultView;
+            changePlaylistSource(musicLib.SongsForPlaylist(playlistName));
+        }
+
+
+        private void changePlaylistSource(DataTable sourceTableFull)
+        {
+            DataTable viewableSource = new DataTable();
+            viewableSource.Columns.Add(new DataColumn("id", typeof(int)));
+            viewableSource.Columns.Add(new DataColumn("title", typeof(string)));
+            viewableSource.Columns.Add(new DataColumn("artist", typeof(string)));
+            viewableSource.Columns.Add(new DataColumn("album", typeof(string)));
+            viewableSource.Columns.Add(new DataColumn("genre", typeof(string)));
+
+
+            foreach (DataRow row in sourceTableFull.Rows)
+            {
+                DataRow newRow = viewableSource.NewRow();
+
+                newRow["id"] = row.ItemArray[0];
+                newRow["title"] = row.ItemArray[1];
+                newRow["artist"] = row.ItemArray[2];
+                newRow["album"] = row.ItemArray[3];
+                newRow["genre"] = row.ItemArray[6];
+
+                viewableSource.Rows.Add(newRow);
+            }
+
+            playlistSongs.ItemsSource = viewableSource.DefaultView;
+
         }
 
     }
