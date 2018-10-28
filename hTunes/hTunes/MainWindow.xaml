@@ -23,5 +23,34 @@
         <Border BorderThickness="1" BorderBrush="Black" Margin="10,80,384,22">
             <TextBlock x:Name="playlistTextBlock"  HorizontalAlignment="Left" Margin="9,9,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="200" Width="103"/>
         </Border>
+        <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Width="497" Height="36">
+            <Button Command="Open" Height="26" Margin="0,0,0,5" Width="24">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="tempPic.jpg"  Width="16" Height="16"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="New" Height="26" Margin="0,0,0,5" Width="24">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="tempPic.jpg"  Width="16" Height="16"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Height="26" Margin="0,0,0,5" Width="24" Click="aboutButton_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="tempPic.jpg"  Width="16" Height="16"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </ToolBar>
     </Grid>
 </Window>

@@ -10,27 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace hTunes
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for aboutWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AboutWindow : Window
     {
-        public static RoutedCommand LaunchAboutPage = new RoutedCommand();
-
-        public MainWindow()
+        public AboutWindow()
         {
             InitializeComponent();
         }
 
-        private void aboutButton_Click(object sender, RoutedEventArgs e)
+        private void aboutOKButton_Click(object sender, RoutedEventArgs e)
         {
-            AboutWindow aboutWindow = new AboutWindow();
-            aboutWindow.Show();
+            Close();
         }
     }
 }
