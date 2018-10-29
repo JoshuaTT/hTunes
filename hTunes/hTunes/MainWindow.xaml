@@ -14,6 +14,17 @@
     </Window.CommandBindings>
 
     <Window.Resources>
+        <ControlTemplate x:Key="MyButtonTemplate" TargetType="Button">
+            <Border Name="Border" BorderThickness="2" CornerRadius="10"
+                BorderBrush="BlueViolet">
+                <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"                                 
+                              TextBlock.FontWeight="Bold"  
+                              TextBlock.Foreground="Firebrick"
+                              Content="{TemplateBinding Content}" />
+            </Border>
+        </ControlTemplate>
+
         <Style x:Key="InvisibleIfNoExecute" >
             <Style.Triggers>
                 <Trigger Property="MenuItem.IsEnabled" Value="False">
@@ -78,8 +89,8 @@
 
         </DataGrid>
 
-        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="110,293,0,0" VerticalAlignment="Top" Width="64" Height="20"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="179,293,0,0" VerticalAlignment="Top" Width="64" Height="20"/>
+        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="110,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}"/>
+        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="179,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}"/>
         <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Height="36">
             <Button Height="26" Margin="0,0,0,5" Width="24" Click="openButton_Click">
                 <Button.Template>

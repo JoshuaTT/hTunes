@@ -138,7 +138,8 @@ namespace hTunes
 
         private void PlayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            player.Play();
         }
 
         private void RemoveSong_CanExecute(object sender, CanExecuteRoutedEventArgs e)
