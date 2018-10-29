@@ -119,6 +119,7 @@ namespace hTunes
                 playlistBox.Items.Add(name);
             }
         }
+
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (playlistBox.HasItems)
@@ -165,6 +166,7 @@ namespace hTunes
                     DataRow selectedRow = selectedRowWrapper.Row;
                     int toRemoveId = (int)selectedRow.ItemArray[0];
                     musicLib.DeleteSong(toRemoveId);
+                    changePlaylistSource(musicLib.SongsForPlaylist(currentPlaylist));
                 }
             }
             catch(Exception)
@@ -190,12 +192,17 @@ namespace hTunes
             {
                 DataRowView selectedRowWrapper = playlistSongs.SelectedItem as DataRowView;
                 DataRow selectedRow = selectedRowWrapper.Row;
-                int toRemoveId = (int)selectedRow.ItemArray[0];
+                string toRemoveIdAsString = selectedRow.ItemArray[0].ToString();
+                int toRemoveId;
+                Int32.TryParse(toRemoveIdAsString, out toRemoveId);
 
-                musicLib.RemoveSongFromPlaylist(toRemoveIndex, toRemoveId, currentPlaylist);
+                musicLib.RemoveSongFromPlaylist(toRemoveIndex + 1, toRemoveId, currentPlaylist);
+                changePlaylistSource(musicLib.SongsForPlaylist(currentPlaylist));
             }
             catch(Exception)
-            { }
+            {
+                bool stop = true;
+            }
         }
 
         private void RenamePlaylist_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -228,6 +235,16 @@ namespace hTunes
             playSong();
         }
 
+        private void IfNotDefault_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            bool notDefault = true;
+
+            if (playlistBox.SelectedItem.ToString() == defaultPlaylist)
+                notDefault = false;
+
+            e.CanExecute = notDefault;
+        }
+
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
             mediaPlayer.Stop();
@@ -243,7 +260,78 @@ namespace hTunes
             }
         }
 
-             
+        private Point startPoint;
+
+        private void playlistSongs_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
+        }
+
+        private void playlistSongs_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Point mousePos = e.GetPosition(null);
+                Vector diff = startPoint - mousePos;
+
+                // Start the drag-drop if mouse has moved far enough
+                if (e.LeftButton == MouseButtonState.Pressed &&
+                    (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                    Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+                {
+                    DataRowView selectedRowWrapper = playlistSongs.SelectedItem as DataRowView;
+                    int selectedSongId = (int)selectedRowWrapper.Row.ItemArray[0];
+                    DragDrop.DoDragDrop(playlistSongs, selectedSongId, DragDropEffects.Copy);
+                }
+            }
+            catch(Exception)
+            {  }
+
+        }        
+
+        private void playlistBox_Drop(object sender, DragEventArgs e)
+        {
+            
+
+            // If the DataObject contains string data, extract it
+            if (e.Data.GetDataPresent(typeof(int)))
+            {
+                TextBlock overItem = e.OriginalSource as TextBlock;
+
+                int addedSongId = (int)e.Data.GetData(typeof(int));
+
+                musicLib.AddSongToPlaylist(addedSongId, overItem.Text);
+            }
+
+        }
+
+        private void playlistBox_DragOver(object sender, DragEventArgs e)
+        {
+
+            try
+            {
+                TextBlock overItem = e.OriginalSource as TextBlock;
+
+                if(musicLib.PlaylistExists(overItem.Text))
+                {
+                    e.Effects = DragDropEffects.Copy;
+                }
+                else if(overItem.Text == defaultPlaylist)
+                {
+                    e.Effects = DragDropEffects.None;
+                }
+                else
+                {
+                    e.Effects = DragDropEffects.None;
+                }
+            }
+            catch(Exception)
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
+
 
         //private void searchTextBox_TextChanged(object sender, EventArgs e)
         //{
