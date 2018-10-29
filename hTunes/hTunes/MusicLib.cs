@@ -127,8 +127,8 @@ namespace hTunes
                             {
                                 if (reader.Name == "image")
                                 {
-                                    if (reader.GetAttribute("size") == "medium")
-                                        Console.WriteLine("Image URL = " + reader.ReadString());
+                                   // if (reader.GetAttribute("size") == "medium")
+                                        //s.Image = reader.ReadString();
                                 }
                             }
                         }
