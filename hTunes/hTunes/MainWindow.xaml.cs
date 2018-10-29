@@ -23,6 +23,7 @@ namespace hTunes
     {
 
         private MusicLib musicLib = new MusicLib();
+        private MediaPlayer mediaPlayer = new MediaPlayer();
         private const string defaultPlaylist = "All Music";
         private string currentPlaylist = "All Music";
 
@@ -138,8 +139,7 @@ namespace hTunes
 
         private void PlayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.Play();
+
         }
 
         private void RemoveSong_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -195,6 +195,25 @@ namespace hTunes
             { }
         }
 
+        private void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView rowView = playlistSongs.SelectedItem as DataRowView;
+            if (rowView != null)
+            {
+                mediaPlayer.Open(new Uri(rowView.Row.ItemArray[4].ToString()));
+                mediaPlayer.Play();
+            }
+        }
+
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+        }
+
+        //private void searchTextBox_TextChanged(object sender, EventArgs e)
+        //{
+        //    (playlistSongs.DataSource as DataTable).DefaultView.RowFilter = string.Format("Name LIKE '%{0}%'", searchBar.Text);
+        //}
     }
 
     public static class CustomCommands

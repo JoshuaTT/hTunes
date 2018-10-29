@@ -37,7 +37,7 @@
 
 
 
-    
+
 
     <Grid Margin="0,0,3,0.2">
         <ListBox x:Name="playlistBox" Height="237" MaxWidth="95.2" Margin="10,51,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="95.2" SelectionChanged="playlistBox_SelectionChanged"/>
@@ -65,7 +65,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            
+
                             <TextBlock Text="Title: " FontWeight="Bold" Grid.Row="0" />
                             <TextBlock Text="{Binding title}" Grid.Column="1" Grid.Row="0" />
                             <TextBlock Text="Artist: " FontWeight="Bold" Grid.Row="1" />
@@ -89,8 +89,8 @@
 
         </DataGrid>
 
-        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="110,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="179,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}"/>
+        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="110,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}" Click="playButton_Click"/>
+        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="179,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}" Click="stopButton_Click"/>
         <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Height="36">
             <Button Height="26" Margin="0,0,0,5" Width="24" Click="openButton_Click">
                 <Button.Template>
@@ -120,5 +120,6 @@
                 </Button.Template>
             </Button>
         </ToolBar>
+        <TextBox Name="searchBar" HorizontalAlignment="Left" Height="23" Margin="350,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
     </Grid>
 </Window>
