@@ -36,6 +36,11 @@ namespace hTunes
         }
 
 
+        ~MainWindow()
+        {
+            musicLib.Save();
+        }
+
         private void aboutButton_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
@@ -59,6 +64,8 @@ namespace hTunes
                 if (newSong != null)
                 {
                     musicLib.AddSong(newSong);
+                    int numOfSongs = playlistSongs.Items.Count;
+                    playlistSongs.SelectedIndex = numOfSongs - 1;
                 }
             }
         }
@@ -108,7 +115,6 @@ namespace hTunes
             return song;
         }
 
-        // Ask Josh
         private void addPlaylists()
         {
             playlistBox.Items.Add("All Music");
@@ -211,7 +217,6 @@ namespace hTunes
                 musicLib.RenamePlaylist(oldName, newPlaylistName);
                 playlistBox.Items.Clear();
                 addPlaylists();
-                //playlistBox.Items.Add(newPlaylistName);
             }
 
         }
@@ -242,13 +247,6 @@ namespace hTunes
                 mediaPlayer.Play();
             }
         }
-
-             
-
-        //private void searchTextBox_TextChanged(object sender, EventArgs e)
-        //{
-        //    (playlistSongs.DataSource as DataTable).DefaultView.RowFilter = string.Format("Name LIKE '%{0}%'", searchBar.Text);
-        //}
     }
 
     public static class CustomCommands

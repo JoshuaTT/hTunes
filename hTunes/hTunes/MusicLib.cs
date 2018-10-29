@@ -6,6 +6,9 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Net;
+using System.IO;
+using System.Xml;
 
 namespace hTunes
 {
@@ -79,7 +82,7 @@ namespace hTunes
 
             // Update this song's ID
             s.Id = Convert.ToInt32(row["id"]);
-
+            GatherAPIInfo(s);
             return s.Id;
         }
 
@@ -102,7 +105,41 @@ namespace hTunes
             GetSongData(s);
 
             AddSong(s);
+            GatherAPIInfo(s);
             return s;
+        }
+
+        private void GatherAPIInfo(Song s)
+        {
+            String url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=" + "3a0530a7e6201ae5512c88cd765c6d5e & " +
+ "artist=" + WebUtility.UrlEncode(s.Artist) + "&track=" + WebUtility.UrlEncode(s.Title);
+            try
+            {
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                using (WebResponse response = request.GetResponse())
+                {
+                    Stream strm = response.GetResponseStream();
+                    using (XmlTextReader reader = new XmlTextReader(strm))
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.NodeType == XmlNodeType.Element)
+                            {
+                                if (reader.Name == "image")
+                                {
+                                    if (reader.GetAttribute("size") == "medium")
+                                        Console.WriteLine("Image URL = " + reader.ReadString());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (WebException e)
+            {
+                // A 400 response is returned when the song is not in their library
+                Console.WriteLine("Error: " + e.Message);
+            }
         }
 
         private void GetSongData(Song s)

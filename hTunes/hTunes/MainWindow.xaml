@@ -130,6 +130,5 @@
                 </Button.Template>
             </Button>
         </ToolBar>
-        <TextBox Name="searchBar" HorizontalAlignment="Left" Height="23" Margin="350,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
     </Grid>
 </Window>
