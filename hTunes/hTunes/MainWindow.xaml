@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:w="clr-namespace:hTunes"
         mc:Ignorable="d"
-        Title="hTunes by Joshua and Tristan" Height="352.656" Width="520.545">
+        Title="hTunes by Joshua and Tristan" Height="372.656" Width="525.345">
 
     <Window.CommandBindings>
         <CommandBinding Command="w:CustomCommands.Play" Executed="PlayCommand_Executed"/>
         <CommandBinding Command="w:CustomCommands.RemoveSong" CanExecute="RemoveSong_CanExecute" Executed="RemoveSong_Executed"/>
         <CommandBinding Command="w:CustomCommands.RemoveFromPlaylist" CanExecute="RemoveFromPlaylist_CanExecute" Executed="RemoveFromPlaylist_Executed"/>
-        <CommandBinding Command="w:CustomCommands.RenamePlaylist" Executed="RenamePlaylist_Executed"/>
-        <CommandBinding Command="w:CustomCommands.RemovePlaylist" Executed="RemovePlaylist_Executed"/>
+        <CommandBinding Command="w:CustomCommands.RenamePlaylist" CanExecute="IfNotDefault_CanExecute" Executed="RenamePlaylist_Executed"/>
+        <CommandBinding Command="w:CustomCommands.RemovePlaylist" CanExecute="IfNotDefault_CanExecute" Executed="RemovePlaylist_Executed"/>
     </Window.CommandBindings>
 
     <Window.Resources>
@@ -36,22 +36,26 @@
         </Style>
     </Window.Resources>
 
-
-
-
-
-
     <Grid Margin="0,0,3,0.2">
-        <ListBox x:Name="playlistBox" Height="237" MaxWidth="95.2" Margin="10,51,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="95.2" SelectionChanged="playlistBox_SelectionChanged">
-        <ListBox.ContextMenu>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="293*"/>
+            <ColumnDefinition Width="218*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="playlistBox" MaxWidth="95.2" Margin="10,51,0,35" VerticalAlignment="Stretch"
+                 HorizontalAlignment="Left" MinWidth="95.2" SelectionChanged="playlistBox_SelectionChanged" AllowDrop="True" Drop="playlistBox_Drop"
+                 DragOver="playlistBox_DragOver">
+            <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Rename" Command="w:CustomCommands.RenamePlaylist" />
                     <Separator />
-                    <MenuItem Header="Remove" Command="w:CustomCommands.RemovePlaylist" />                   
+                    <MenuItem Header="Remove" Command="w:CustomCommands.RemovePlaylist" />
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
-        <DataGrid x:Name="playlistSongs" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" HorizontalAlignment="Left" Margin="110,51,0,35" MinWidth="397" >
+
+        <DataGrid x:Name="playlistSongs" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="110,51,0.4,35" MinWidth="397" MouseMove="playlistSongs_MouseMove" 
+                  PreviewMouseLeftButtonDown="playlistSongs_PreviewMouseLeftButtonDown" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding title}" Header="Title"/>
@@ -99,9 +103,9 @@
 
         </DataGrid>
 
-        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="110,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}" Click="playButton_Click"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="179,293,0,0" VerticalAlignment="Top" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}" Click="stopButton_Click"/>
-        <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Height="36">
+        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="110,0,0,10" VerticalAlignment="Bottom" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}" Click="playButton_Click"/>
+        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="179,0,0,10" VerticalAlignment="Bottom" Width="64" Height="20" Template="{StaticResource MyButtonTemplate}" Click="stopButton_Click"/>
+        <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Height="36" Grid.ColumnSpan="2">
             <Button Height="26" Margin="0,0,0,5" Width="24" Click="openButton_Click">
                 <Button.Template>
                     <ControlTemplate>
@@ -130,5 +134,9 @@
                 </Button.Template>
             </Button>
         </ToolBar>
+<<<<<<< HEAD
+=======
+        <TextBox Name="searchBar" HorizontalAlignment="Left" Height="23" Margin="56.6,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Grid.Column="1"/>
+>>>>>>> 85d81f5586246b66c335b1f07a402a6aa72e6385
     </Grid>
 </Window>
