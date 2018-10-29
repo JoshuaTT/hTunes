@@ -1,0 +1,16 @@
+﻿<Window x:Class="hTunes.RenamePlaylistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hTunes"
+        mc:Ignorable="d"
+        Title="RenamePlaylistWindow" Height="150.732" Width="223.902">
+    <Grid>
+        <TextBox x:Name="newNameTextBox" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="New Name:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="okButton" Content="OK" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="75" Click="okButton_Click"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="132,85,0,0" VerticalAlignment="Top" Width="75" Click="cancelButton_Click"/>
+
+    </Grid>
+</Window>

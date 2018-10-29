@@ -69,6 +69,9 @@
       <DependentUpon>music.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="RenamePlaylistWindow.xaml.cs">
+      <DependentUpon>RenamePlaylistWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Song.cs" />
     <Page Include="aboutWindow.xaml">
       <SubType>Designer</SubType>
@@ -90,6 +93,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewPlaylist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RenamePlaylistWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

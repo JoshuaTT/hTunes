@@ -121,14 +121,17 @@ namespace hTunes
         }
         private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentPlaylist = playlistBox.SelectedValue.ToString();
+            if (playlistBox.HasItems)
+            {
+                currentPlaylist = playlistBox.SelectedValue.ToString();
 
-            if (currentPlaylist != defaultPlaylist)
-                playlistSongs.IsReadOnly = true;
-            else
-                playlistSongs.IsReadOnly = false;
+                if (currentPlaylist != defaultPlaylist)
+                    playlistSongs.IsReadOnly = true;
+                else
+                    playlistSongs.IsReadOnly = false;
 
-            changePlaylistSource(musicLib.SongsForPlaylist(currentPlaylist));
+                changePlaylistSource(musicLib.SongsForPlaylist(currentPlaylist));
+            }
         }
 
 
@@ -139,7 +142,7 @@ namespace hTunes
 
         private void PlayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
+            playSong();
         }
 
         private void RemoveSong_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -195,7 +198,40 @@ namespace hTunes
             { }
         }
 
+        private void RenamePlaylist_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string oldName = playlistBox.SelectedItem.ToString();
+
+            RenamePlaylistWindow renamePlaylistWindow = new RenamePlaylistWindow(oldName);
+            renamePlaylistWindow.ShowDialog();
+            bool renamePlaylist = renamePlaylistWindow.WasOKClicked;
+            if (renamePlaylist == true)
+            {
+                string newPlaylistName = renamePlaylistWindow.getPlaylistName;
+                musicLib.RenamePlaylist(oldName, newPlaylistName);
+                playlistBox.Items.Clear();
+                addPlaylists();
+                //playlistBox.Items.Add(newPlaylistName);
+            }
+
+        }
+
+        private void RemovePlaylist_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            musicLib.DeletePlaylist(currentPlaylist);
+        }
+
         private void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            playSong();
+        }
+
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+        }
+
+        private void playSong()
         {
             DataRowView rowView = playlistSongs.SelectedItem as DataRowView;
             if (rowView != null)
@@ -205,10 +241,7 @@ namespace hTunes
             }
         }
 
-        private void stopButton_Click(object sender, RoutedEventArgs e)
-        {
-            mediaPlayer.Stop();
-        }
+             
 
         //private void searchTextBox_TextChanged(object sender, EventArgs e)
         //{
@@ -221,6 +254,7 @@ namespace hTunes
         public static readonly RoutedUICommand Play = new RoutedUICommand("Play", "Play", typeof(MainWindow));
         public static readonly RoutedUICommand RemoveSong = new RoutedUICommand("RemoveSong", "RemoveSong", typeof(MainWindow));
         public static readonly RoutedUICommand RemoveFromPlaylist = new RoutedUICommand("RemoveFromPlaylist", "RemoveFromPlaylist", typeof(MainWindow));
-
+        public static readonly RoutedUICommand RenamePlaylist = new RoutedUICommand("RenamePlaylist", "RenamePlaylist", typeof(MainWindow));
+        public static readonly RoutedUICommand RemovePlaylist = new RoutedUICommand("RemovePlaylist", "RemovePlaylist", typeof(MainWindow));
     }
 }
