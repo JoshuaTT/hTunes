@@ -244,7 +244,7 @@ namespace hTunes
         {
             bool notDefault = true;
 
-            if (playlistBox.SelectedItem.ToString() == defaultPlaylist)
+            if (currentPlaylist == defaultPlaylist)
                 notDefault = false;
 
             e.CanExecute = notDefault;
