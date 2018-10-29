@@ -264,8 +264,6 @@ namespace hTunes
                 mediaPlayer.Play();
             }
         }
-<<<<<<< HEAD
-=======
 
         private Point startPoint;
 
@@ -344,7 +342,6 @@ namespace hTunes
         //{
         //    (playlistSongs.DataSource as DataTable).DefaultView.RowFilter = string.Format("Name LIKE '%{0}%'", searchBar.Text);
         //}
->>>>>>> 85d81f5586246b66c335b1f07a402a6aa72e6385
     }
 
     public static class CustomCommands
