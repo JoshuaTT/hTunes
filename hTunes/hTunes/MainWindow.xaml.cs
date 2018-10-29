@@ -219,6 +219,8 @@ namespace hTunes
         private void RemovePlaylist_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             musicLib.DeletePlaylist(currentPlaylist);
+            playlistBox.Items.Clear();
+            addPlaylists();
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
