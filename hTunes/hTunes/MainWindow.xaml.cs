@@ -325,10 +325,7 @@ namespace hTunes
                 {
                     e.Effects = DragDropEffects.None;
                 }
-                else
-                {
-                    e.Effects = DragDropEffects.None;
-                }
+                
             }
             catch(Exception)
             {
